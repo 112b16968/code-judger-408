@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class JP {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String stringinput = input.nextLine();
+
+        if (stringinput.length() > 50) {
+            System.out.println("error");            
+        } else {
+            String result = shifLetters(stringinput);
+            System.out.println(result);
+        }
+
+        input.close();
+    }
+
+    public static String shifLetters(String stringinput) {
+         // 透過這行字串可以簡單符合體意需要的條件
+        String keyboard = "qwertyuiopasdfghjklzxcvbnm";
+        // 透過StringBuilder 可以更方便且有效率的改變字串
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < stringinput.length(); i++) {
+            //透過迴圈方式去檢查每一個字
+            char currentChar = stringinput.charAt(i);
+
+            if (Character.isLetter(currentChar)) {
+                int index = keyboard.indexOf(Character.toLowerCase(currentChar));
+                // 先檢查是不字母 創建新整數去確認currentChar再keyboard的哪個位置
+                char rightLetter;
+                if (currentChar == 'p' || currentChar == 'l' || currentChar == 'm') {
+                    //當在這些字母的時候 因為右邊沒有字母 所以傳回相同值
+                    rightLetter = keyboard.charAt((index));
+                } else {
+                    rightLetter = keyboard.charAt((index + 1) % 26);
+                }
+
+                if (Character.isUpperCase(currentChar)) {
+                    result.append(Character.toUpperCase(rightLetter));
+                } else {
+                    result.append(rightLetter);
+                }
+            } else {
+                result.append(currentChar);
+            }
+        }
+        return result.toString();
+    }
+}
