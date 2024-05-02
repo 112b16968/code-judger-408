@@ -1,0 +1,31 @@
+
+import java.util.Scanner;
+
+public class JP {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String str1 = input.nextLine();
+        String str2 = input.nextLine();
+        if (str1.length() > 3 && str1.length() < 20 &&str2.length() > 3 && str2.length() < 20) {
+            System.out.println(str1.length());
+            System.out.println(str2.length());
+            String str3 = str1+str2;
+            System.out.println(run(str3));
+        }else{
+            System.out.println("error");
+        }
+
+        input.close();
+    }
+    public static String run(String str3){
+        StringBuilder result = new StringBuilder();
+        for(int i = str3.length() - 1; i >= 0 ;i--){
+            //最後一個開始 應該從length - 1
+            char cuurent  = str3.charAt(i);
+            result.append(cuurent);
+        }
+        return result.toString();
+       
+    }
+}
