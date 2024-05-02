@@ -1,0 +1,44 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class JP {
+
+    public static void main(String[] args) {
+        try {
+            File file1 = new File("read.txt");
+            File file2 = new File("write.txt");
+            Scanner input = new Scanner(file1);
+            FileWriter output = new FileWriter(file2);
+            StringBuilder result = new StringBuilder();
+            String changeString = "abcdefghijklmnopqrstuvwxyz";
+            while (input.hasNextLine()) {
+                String date = input.nextLine();
+                for(int i = 0 ;i < date.length() ;i ++){
+                    char current = date.charAt(i);
+                    int index = changeString.indexOf(current);
+                    char right ;
+                    right = changeString.charAt(index + 2);
+                    result.append(right);
+                    
+                }
+                result.append("\n");
+            }
+            
+            output.write(result.toString());
+            input.close();
+            output.close();
+            
+        } catch (FileNotFoundException e) {
+            // TODO: handle exception
+            System.out.println("error"+ e);
+        }catch (IOException e){
+            System.out.println("error" + e);
+        }
+    }
+    
+
+}
